@@ -14,8 +14,21 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class = "container-fluid h1 text-center p-3 bg-dark text-light">Weather Dashboard</header>
-    <main></main>
+    <header
+      class="container-fluid h1 text-center p-3 bg-dark text-light bg-gradient"
+    >
+      Weather Dashboard
+    </header>
+    <main class="container">
+      <div class="h2 pt-3 fw-bold col-12 col-md-4">Search for a City:</div>
+      <div class="col-12 col-md-4">
+        <form class="d-flex flex-column" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success mt-3" type="submit">Search</button>
+        </form>
+      </div>
+      <hr class="col-12 col-md-4">
+    </main>
 
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
