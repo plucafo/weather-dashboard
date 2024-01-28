@@ -3,3 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.custom-margin-top {
+    margin-top: 62px;
+}
+
+.custom-padding {
+    padding: 100px;
+}
