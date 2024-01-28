@@ -19,7 +19,7 @@ for (var i = 0; i < cities.length; i++) {
   buttonEl.append(cityBtn);
 }
 
-var chicagoURL = "https://api.openweathermap.org/data/2.5/weather?lat=41&lon=87&appid=976a6e1bd50b752c93e255a6e65ac032"
+var chicagoURL = "https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=41.88&lon=-87.62&appid=976a6e1bd50b752c93e255a6e65ac032"
 
 fetch(chicagoURL)
     .then(function (response) {
