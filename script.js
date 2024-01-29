@@ -31,9 +31,9 @@ var cityTempEl = $("<h6>");
 
 // Fetch URLs
 var chicagoURL =
-  "https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=41.88&lon=-87.62&appid=976a6e1bd50b752c93e255a6e65ac032";
+  "https://api.openweathermap.org/data/2.5/weather?units=imperial&q=chicago&appid=976a6e1bd50b752c93e255a6e65ac032";
 var forecastURL =
-  "https://api.openweathermap.org/data/2.5/forecast?units=imperial&lat=41.88&lon=-87.62&appid=976a6e1bd50b752c93e255a6e65ac032";
+  "https://api.openweathermap.org/data/2.5/forecast?units=imperial&q=chicago&appid=976a6e1bd50b752c93e255a6e65ac032";
 
 // Fetch weather data
 fetch(chicagoURL)
