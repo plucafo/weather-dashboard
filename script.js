@@ -29,14 +29,20 @@ var conditionEl = $("<h6>");
 var iconEl = $("<img>");
 var cityTempEl = $("<h6>");
 
-// Fetch URLs
-var chicagoURL =
-  "https://api.openweathermap.org/data/2.5/weather?units=imperial&q=chicago&appid=976a6e1bd50b752c93e255a6e65ac032";
-var forecastURL =
-  "https://api.openweathermap.org/data/2.5/forecast?units=imperial&q=chicago&appid=976a6e1bd50b752c93e255a6e65ac032";
+var searchForm = $(".search-form");
+var userSelectedCity;
+var weatherURL;
 
-// Fetch weather data
-fetch(chicagoURL)
+searchForm.on('submit', function(event){
+  event.preventDefault();
+
+  userSelectedCity = searchForm.children('input').val();
+
+  weatherURL = `https://api.openweathermap.org/data/2.5/weather?units=imperial&q=${userSelectedCity}&appid=976a6e1bd50b752c93e255a6e65ac032`;
+
+  console.log('Submitted City: ' + userSelectedCity);
+
+  fetch(weatherURL)
   .then(function (response) {
     return response.json();
   })
@@ -59,13 +65,22 @@ fetch(chicagoURL)
     cityTempEl.text(`${temp}°F`);
     conditionEl.text(condition);
     iconEl.attr("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png");
-
+    // weatherEl.addClass('d-flex align-items-center')
     // Append elements to the weather info field
     weatherEl.append(iconEl);
     weatherEl.append(cityNameEl);
     weatherEl.append(conditionEl);
     weatherEl.append(cityTempEl);
   });
+})
+
+// Fetch URLs
+// var weatherURL =
+//   "https://api.openweathermap.org/data/2.5/weather?units=imperial&q=chicago&appid=976a6e1bd50b752c93e255a6e65ac032";
+var forecastURL =
+  "https://api.openweathermap.org/data/2.5/forecast?units=imperial&q=chicago&appid=976a6e1bd50b752c93e255a6e65ac032";
+
+
 // Fetch forecast data
 fetch(forecastURL)
   .then(function (response2) {
@@ -74,3 +89,4 @@ fetch(forecastURL)
   .then(function (forecastData) {
     console.log(forecastData);
   });
+  
