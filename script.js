@@ -1,6 +1,12 @@
-// Create a button element and append it to the page
+// Element variables
+var weatherEl = $(".weather-info");
+var cityNameEl = $("<h3>");
+var conditionEl = $("<h6>");
+var iconEl = $("<img>");
+var cityTempEl = $("<h6>");
+var searchForm = $(".search-form");
 var buttonEl = $(".city-buttons");
-var cityBtn = $("<button>").addClass("btn bg-secondary-subtle text-dark w-100");
+var weatherURL;
 
 var cities = [
   "Atlanta",
@@ -10,25 +16,27 @@ var cities = [
   "New York",
   "Phoenix",
 ];
+
 // Creates buttons using cities array
 for (var i = 0; i < cities.length; i++) {
   var cityBtn = $("<button>")
     .text(cities[i])
     .addClass("btn bg-secondary-subtle text-dark mb-3 w-100");
+
+// Listens for click on button and updates weather info based on the buttons text
+  cityBtn.on("click", function () {
+    var clickedBtn = $(this).text();
+    weatherURL = `https://api.openweathermap.org/data/2.5/weather?units=imperial&q=${clickedBtn}&appid=976a6e1bd50b752c93e255a6e65ac032`;
+    getWeatherData();
+    console.log(clickedBtn);
+  });
+
   buttonEl.append(cityBtn);
 }
 
-// Element variables
-var weatherEl = $(".weather-info");
-var cityNameEl = $("<h3>");
-var conditionEl = $("<h6>");
-var iconEl = $("<img>");
-var cityTempEl = $("<h6>");
-var searchForm = $(".search-form");
-
 // Sets Chicago as default weather displayed on page load
 var userSelectedCity = "Chicago"; // Set this to any city to change default weather shown
-var weatherURL = `https://api.openweathermap.org/data/2.5/weather?units=imperial&q=${userSelectedCity}&appid=976a6e1bd50b752c93e255a6e65ac032`;
+weatherURL = `https://api.openweathermap.org/data/2.5/weather?units=imperial&q=${userSelectedCity}&appid=976a6e1bd50b752c93e255a6e65ac032`;
 getWeatherData();
 
 // Event listener on form submit
@@ -44,10 +52,10 @@ searchForm.on("submit", function (event) {
   getWeatherData();
 });
 
+// Fetch forecast data
 var forecastURL =
   "https://api.openweathermap.org/data/2.5/forecast?units=imperial&q=chicago&appid=976a6e1bd50b752c93e255a6e65ac032";
 
-// Fetch forecast data
 fetch(forecastURL)
   .then(function (response2) {
     return response2.json();
