@@ -1,6 +1,5 @@
 // Create a button element and append it to the page
 var buttonEl = $(".city-buttons");
-var buttonText; // Get text for dynamically created buttons from open weather API
 var cityBtn = $("<button>").addClass("btn bg-secondary-subtle text-dark w-100");
 
 var cities = [
@@ -27,12 +26,14 @@ for (var i = 0; i < cities.length; i++) {
 var weatherEl = $(".weather-info");
 var cityNameEl = $("<h3>");
 var conditionEl = $("<h6>");
-var iconEl = $('<img>');
+var iconEl = $("<img>");
 var cityTempEl = $("<h6>");
 
+// Fetch URLs
 var chicagoURL =
   "https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=41.88&lon=-87.62&appid=976a6e1bd50b752c93e255a6e65ac032";
-var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?units=imperial&lat=41.88&lon=-87.62&appid=976a6e1bd50b752c93e255a6e65ac032";
+var forecastURL =
+  "https://api.openweathermap.org/data/2.5/forecast?units=imperial&lat=41.88&lon=-87.62&appid=976a6e1bd50b752c93e255a6e65ac032";
 
 // Fetch weather data
 fetch(chicagoURL)
@@ -52,17 +53,19 @@ fetch(chicagoURL)
       Weather Condition: ${condition}
       Icon: ${icon}`
     );
+
+    // Add content to elements
     cityNameEl.text(location);
     cityTempEl.text(`${temp}°F`);
     conditionEl.text(condition);
-    iconEl.attr('src', 'https://openweathermap.org/img/wn/' + icon + '@2x.png')
+    iconEl.attr("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png");
 
+    // Append elements to the weather info field
     weatherEl.append(iconEl);
     weatherEl.append(cityNameEl);
     weatherEl.append(conditionEl);
     weatherEl.append(cityTempEl);
-
-});
+  });
 // Fetch forecast data
 fetch(forecastURL)
   .then(function (response2) {
@@ -71,5 +74,3 @@ fetch(forecastURL)
   .then(function (forecastData) {
     console.log(forecastData);
   });
-    
-
