@@ -21,9 +21,9 @@
     </header>
     <main class="container">
       <div class="row">
-        <nav class="col-12 col-md-4">
+        <!-- Side navigation form and buttons -->
+        <nav class="col-12 col-md-3">
           <div class="h2 pt-3 fw-bold">Search for a City:</div>
-
           <form class="search-form d-flex flex-column" role="search">
             <input
               class="form-control me-2"
@@ -40,24 +40,47 @@
           <!-- Create side buttons dynamically here -->
           <div class="city-buttons"></div>
         </nav>
-        <div class="col-md-8 custom">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="custom-margin-top custom-padding border">
-                    <div class="weather-info">
-                        <!-- Weather info is dynamically displayed here from ap data -->
-                    </div>
+        <div class="col-md-9 custom">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="custom-margin-top custom-padding border">
+                <div class="weather-info">
+                  <!-- Weather info is dynamically displayed here from ap data -->
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="5-day-forecast mt-3 custom-padding border">5 Day Forecast</div>
+          </div>
+          <!-- 5-day Forecast Section -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="5-day-forecast d-flex mt-3 p-2 border">
+                <!-- Cards for 5-day forecast -->
+                <div class="card text-bg-primary mx-1" style="max-width: 12rem">
+                  <div class="card-header">Date + Icon</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Primary card title</h5>
+                    <p class="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                  </div>
+                </div>
+                <div class="card text-bg-primary mx-1" style="max-width: 12rem">
+                  <div class="card-header">Date + Icon</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Primary card title</h5>
+                    <p class="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </main>
+      </div>
+    </main>
 
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
