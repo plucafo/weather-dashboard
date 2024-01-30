@@ -59,6 +59,8 @@ searchForm.on("submit", function (event) {
 // forecastData.data[i].temp - FOR TEMP
 // forecastData.data[i].rh - FOR HUMIDITY
 // forecastData.data[i].wind_spd - FOR WIND SPEED
+// forecastData.data[i].wind_cdir - FOR WIND DIRECTION
+// forecastData.data[i].weather.icon - FOR ICON CODE
 var forecastURL = 'https://api.weatherbit.io/v2.0/forecast/daily?days=5&units=I&city=Chicago&key=bca218b26d2144f6a9ccb2b63a562e2a';
 
 fetch(forecastURL)
