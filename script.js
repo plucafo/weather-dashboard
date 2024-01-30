@@ -1,5 +1,6 @@
 // Element variables
 var weatherEl = $(".weather-info");
+var forecastEl = $(".five-day-forecast");
 var cityNameEl = $("<h3>");
 var conditionEl = $("<h6>");
 var iconEl = $("<img>");
@@ -53,19 +54,19 @@ searchForm.on("submit", function (event) {
 });
 
 // Fetch forecast data
-// var forecastURL =
-//   'https://api.openweathermap.org/data/2.5/forecast/daily?units=imperial&q=chicago&cnt=5&appid=976a6e1bd50b752c93e255a6e65ac032';
+// Create a for loop to iterate over forecastData.data[i] and get data needed for each card
+// forecastData.data[i].datetime - FOR DATE
+// forecastData.data[i].temp - FOR TEMP
+// forecastData.data[i].rh - FOR HUMIDITY
+// forecastData.data[i].wind_spd - FOR WIND SPEED
+var forecastURL = 'https://api.weatherbit.io/v2.0/forecast/daily?days=5&units=I&city=Chicago&key=bca218b26d2144f6a9ccb2b63a562e2a';
 
-// var meteoURL = 'https://api.open-meteo.com/v1/forecast?latitude=41.88&longitude=-87.62&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m';
-
-var weatherbitURL = 'https://api.weatherbit.io/v2.0/forecast/daily?days=5&units=I&city=Chicago&key=bca218b26d2144f6a9ccb2b63a562e2a';
-
-fetch(weatherbitURL)
+fetch(forecastURL)
   .then(function (response2) {
     return response2.json();
   })
   .then(function (forecastData) {
-    console.log('Forecast: ');
+    console.log('forecastData: ');
     console.log(forecastData);
   });
 
