@@ -54,7 +54,7 @@ searchForm.on("submit", function (event) {
 
 // Fetch forecast data
 var forecastURL =
-  "https://api.openweathermap.org/data/2.5/forecast?units=imperial&q=chicago&appid=976a6e1bd50b752c93e255a6e65ac032";
+  'https://api.openweathermap.org/data/2.5/forecast/daily?units=imperial&q=chicago&cnt=5&appid=976a6e1bd50b752c93e255a6e65ac032';
 
 fetch(forecastURL)
   .then(function (response2) {
@@ -74,6 +74,7 @@ function getWeatherData() {
       return response.json();
     })
     .then(function (weatherData) {
+      console.log('weatherData: ');
       console.log(weatherData);
 
       var temp = weatherData.main.temp;
