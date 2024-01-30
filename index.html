@@ -21,7 +21,7 @@
     </header>
     <main class="container">
       <div class="row">
-        <!-- Side navigation form and buttons -->
+        <!-- Side navigation section -->
         <nav class="col-12 col-md-3">
           <div class="h2 pt-3 fw-bold">Search for a City:</div>
           <form class="search-form d-flex flex-column" role="search">
@@ -35,50 +35,45 @@
               Search
             </button>
           </form>
-
           <hr />
-          <!-- Create side buttons dynamically here -->
-          <div class="city-buttons"></div>
-        </nav>
-        <div class="col-md-9 custom">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="custom-margin-top custom-padding border">
-                <div class="weather-info">
-                  <!-- Weather info is dynamically displayed here from ap data -->
-                </div>
-              </div>
-            </div>
+          <div class="city-buttons">
+            <!-- Create side buttons dynamically here -->
           </div>
-          <!-- 5-day Forecast Section -->
-          <div class="row">
-            <div class="col-md-12">
-              <div class="5-day-forecast d-flex mt-3 p-2 border">
-                <!-- Cards for 5-day forecast -->
-                <div class="card text-bg-primary mx-1" style="max-width: 12rem">
-                  <div class="card-header">Date + Icon</div>
-                  <div class="card-body">
-                    <h5 class="card-title">Primary card title</h5>
-                    <p class="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </p>
-                  </div>
-                </div>
-                <div class="card text-bg-primary mx-1" style="max-width: 12rem">
-                  <div class="card-header">Date + Icon</div>
-                  <div class="card-body">
-                    <h5 class="card-title">Primary card title</h5>
-                    <p class="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        </nav>
+
+        <!-- Weather info section -->
+        <div class="col-12 col-md-9 custom-margin-top p-5 border">
+          <div class="weather-info h-100 d-flex flex-column align-items-start justify-content-center p-5">
+            <!-- Weather info is dynamically displayed here from api data -->
           </div>
         </div>
+
+        <!-- 5-day Forecast Section -->
+        <!-- <div class="col-md-12"> -->
+          <div class="col-12 5-day-forecast d-flex mt-3 p-2 border">
+            <!-- Cards for 5-day forecast -->
+            <div class="card text-bg-primary mx-1" style="max-width: 12rem">
+              <div class="card-header">Date + Icon</div>
+              <div class="card-body">
+                <h5 class="card-title">Primary card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+              </div>
+            </div>
+            <div class="card text-bg-primary mx-1" style="max-width: 12rem">
+              <div class="card-header">Date + Icon</div>
+              <div class="card-body">
+                <h5 class="card-title">Primary card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+              </div>
+            </div>
+          </div>
+        <!-- </div> -->
       </div>
     </main>
 
