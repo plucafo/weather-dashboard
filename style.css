@@ -1,3 +1,17 @@
+@media only screen and (min-width: 426px) {
+  .five-day-forecast .card {
+    width: 15rem;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .five-day-forecast .card {
+    width: 100%;
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+  }
+}
+
 * {
     margin: 0;
     padding: 0;
