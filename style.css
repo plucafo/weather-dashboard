@@ -18,3 +18,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.custom-height {
+  height: 300px;
+}

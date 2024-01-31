@@ -8,6 +8,7 @@ var cityTempEl = $("<h6>");
 var searchForm = $(".search-form");
 var buttonEl = $(".city-buttons");
 var weatherURL;
+var forecastURL;
 
 var cities = [
   "Atlanta",
@@ -21,13 +22,14 @@ var cities = [
 // Sets Chicago as default weather displayed on page load
 var userSelectedCity = "Chicago"; // Set this to any city to change default weather shown
 weatherURL = `https://api.openweathermap.org/data/2.5/weather?units=imperial&q=${userSelectedCity}&appid=976a6e1bd50b752c93e255a6e65ac032`;
+forecastURL =
+  `https://api.openweathermap.org/data/2.5/forecast?q=${userSelectedCity}&units=imperial&appid=976a6e1bd50b752c93e255a6e65ac032`;
 
 getWeatherData();
+getForecastData();
 
 // Fetch forecast data
-var forecastURL =
-  "https://api.openweathermap.org/data/2.5/forecast?q=Chicago&units=imperial&appid=976a6e1bd50b752c93e255a6e65ac032";
-
+function getForecastData() {
 fetch(forecastURL)
   .then(function (response2) {
     return response2.json();
@@ -36,16 +38,35 @@ fetch(forecastURL)
     console.log("forecastData: ");
     console.log(forecastData);
     
-    var forecastDate = forecastData.list[i].dt_txt.split(" ")[0];
-    var forecastIcon = forecastData.list[0].weather[0].icon;
-    var forecastTemp = forecastData.list[i].main.temp;
-    var forecastWind = forecastData.list[i].wind.speed;
-    var forecastHumidity = forecastData.list[i].main.humidity;
-    // Gets time of day for each 3-hour forecast index
-    var timeStamp = forecastData.list[0].dt_txt.split(" ")[1];
-    console.log(timeStamp);
+    
+    for (var i=0; i < 40; i++) {
+      // Variables to collect API data
+      var forecastDate = forecastData.list[i].dt_txt.split(" ")[0];
+      var forecastIcon = forecastData.list[i].weather[0].icon;
+      var forecastTemp = forecastData.list[i].main.temp;
+      var forecastWind = forecastData.list[i].wind.speed;
+      var forecastHumidity = forecastData.list[i].main.humidity;
+      var timeStamp = forecastData.list[i].dt_txt.split(" ")[1];
+
+      // Varibles to create card elements
+      var forecastCardEl = $('<div>').addClass('card text-bg-primary my-3 p-3 custom-height');
+      var forecastDateEl = $('<h5>').text(forecastDate);
+      var forecastIconEl = $('<img>').attr('src', 'https://openweathermap.org/img/wn/' + forecastIcon + '@2x.png').addClass('w-25');
+      var hrEl = $('<hr>');
+      
+
+      if(timeStamp == '12:00:00') {
+        console.log(forecastDate);
+
+        forecastEl.append(forecastCardEl);
+        forecastCardEl.append(forecastDateEl);
+        forecastCardEl.append(forecastIconEl);
+        forecastCardEl.append(hrEl);
+      }
+    }
 
   });
+}
 
 for (var i = 0; i < cities.length; i++) {
   // Create button elements using names from cities array
@@ -57,6 +78,8 @@ for (var i = 0; i < cities.length; i++) {
   cityBtn.on("click", function () {
     var clickedBtn = $(this).text();
     weatherURL = `https://api.openweathermap.org/data/2.5/weather?units=imperial&q=${clickedBtn}&appid=976a6e1bd50b752c93e255a6e65ac032`;
+   forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${clickedBtn}&units=imperial&appid=976a6e1bd50b752c93e255a6e65ac032`;
+
     getWeatherData();
   });
 
@@ -107,10 +130,13 @@ function getWeatherData() {
 // Handles form submission
 function handleFormSubmit(event) {
   event.preventDefault();
+  forecastEl.empty();
   userSelectedCity = searchForm.children("input").val();
   weatherURL = `https://api.openweathermap.org/data/2.5/weather?units=imperial&q=${userSelectedCity}&appid=976a6e1bd50b752c93e255a6e65ac032`;
+  forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${userSelectedCity}&units=imperial&appid=976a6e1bd50b752c93e255a6e65ac032`;
 
   getWeatherData();
+  getForecastData();
 }
 
 // Event listener on form submit
