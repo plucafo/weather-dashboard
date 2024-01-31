@@ -7,6 +7,8 @@ var iconEl = $("<img>");
 var cityTempEl = $("<h6>");
 var searchForm = $(".search-form");
 var buttonEl = $(".city-buttons");
+
+// API URL Variables
 var weatherURL;
 var forecastURL;
 
@@ -43,7 +45,7 @@ fetch(forecastURL)
       // Variables to collect API data
       var forecastDate = forecastData.list[i].dt_txt.split(" ")[0];
       var forecastIcon = forecastData.list[i].weather[0].icon;
-      var forecastTemp = forecastData.list[i].main.temp;
+      var forecastTemp = forecastData.list[i].main.feels_like;
       var forecastWind = forecastData.list[i].wind.speed;
       var forecastHumidity = forecastData.list[i].main.humidity;
       var forecastCity = forecastData.city.name;
@@ -59,10 +61,8 @@ fetch(forecastURL)
       var forecastWindEl = $('<p>').text(`Wind: ${forecastWind}MPH`);
       var forecastHumidityEl = $('<p>').text(`Humidity: ${forecastHumidity}%`);
       
-
-      if(timeStamp == '12:00:00') {
-        console.log(forecastDate);
-
+      // Append elements with data to the forecastCardEl if times match
+      if(timeStamp == '00:00:00') {
         forecastEl.append(forecastCardEl);
         forecastCardEl.append(forecastDateEl);
         forecastCardEl.append(forecastIconEl);
@@ -85,11 +85,13 @@ for (var i = 0; i < cities.length; i++) {
 
   // Event listener for side buttons
   cityBtn.on("click", function () {
+    forecastEl.empty();
     var clickedBtn = $(this).text();
     weatherURL = `https://api.openweathermap.org/data/2.5/weather?units=imperial&q=${clickedBtn}&appid=976a6e1bd50b752c93e255a6e65ac032`;
    forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${clickedBtn}&units=imperial&appid=976a6e1bd50b752c93e255a6e65ac032`;
 
     getWeatherData();
+    getForecastData();
   });
 
   buttonEl.append(cityBtn);
