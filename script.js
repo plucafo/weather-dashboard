@@ -142,7 +142,7 @@ function getWeatherData() {
 function handleFormSubmit(event) {
   event.preventDefault();
   forecastEl.empty();
-  userSelectedCity = searchForm.children("input").val();
+  userSelectedCity = searchForm.children("input").val().split(',')[0].trim();
   weatherURL = `https://api.openweathermap.org/data/2.5/weather?units=imperial&q=${userSelectedCity}&appid=976a6e1bd50b752c93e255a6e65ac032`;
   forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${userSelectedCity}&units=imperial&appid=976a6e1bd50b752c93e255a6e65ac032`;
 
