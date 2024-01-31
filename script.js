@@ -46,6 +46,7 @@ fetch(forecastURL)
       var forecastTemp = forecastData.list[i].main.temp;
       var forecastWind = forecastData.list[i].wind.speed;
       var forecastHumidity = forecastData.list[i].main.humidity;
+      var forecastCity = forecastData.city.name;
       var timeStamp = forecastData.list[i].dt_txt.split(" ")[1];
 
       // Varibles to create card elements
@@ -53,6 +54,10 @@ fetch(forecastURL)
       var forecastDateEl = $('<h5>').text(forecastDate);
       var forecastIconEl = $('<img>').attr('src', 'https://openweathermap.org/img/wn/' + forecastIcon + '@2x.png').addClass('w-25');
       var hrEl = $('<hr>');
+      var forecastCityEl = $('<p>').text(forecastCity);
+      var forecastTempEl = $('<p>').text(`Temp: ${forecastTemp}°F`);
+      var forecastWindEl = $('<p>').text(`Wind: ${forecastWind}MPH`);
+      var forecastHumidityEl = $('<p>').text(`Humidity: ${forecastHumidity}%`);
       
 
       if(timeStamp == '12:00:00') {
@@ -62,6 +67,10 @@ fetch(forecastURL)
         forecastCardEl.append(forecastDateEl);
         forecastCardEl.append(forecastIconEl);
         forecastCardEl.append(hrEl);
+        forecastCardEl.append(forecastCityEl);
+        forecastCardEl.append(forecastTempEl);
+        forecastCardEl.append(forecastWindEl);
+        forecastCardEl.append(forecastHumidityEl);
       }
     }
 
