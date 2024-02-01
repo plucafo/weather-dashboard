@@ -1,10 +1,7 @@
 // Element variables
 var weatherEl = $(".weather-info");
 var forecastEl = $(".five-day-forecast");
-var cityNameEl = $("<h3>");
-var conditionEl = $("<h6>");
-var iconEl = $("<img>");
-var cityTempEl = $("<h6>");
+
 var searchForm = $(".search-form");
 var buttonEl = $(".city-buttons");
 
@@ -36,18 +33,30 @@ function getWeatherData() {
       console.log("weatherData: ");
       console.log(weatherData);
 
+      weatherEl.empty();
+
+      // Only create button if weatherData is available
       if (weatherData) {
-        // Only create button if weatherData is available
         createButton(userSelectedCity);
       }
       
-      // var date = weatherData.
+      // Variables to collect API data
+      // var date = dayjs(weatherData.dt).format('dddd, MMM D YYYY');
+      var date = dayjs(new Date()).format('dddd, MMM D YYYY');
       var temp = weatherData.main.temp;
       var condition = weatherData.weather[0].description;
       var location = weatherData.name;
       var icon = weatherData.weather[0].icon;
+      
+      // Create elements to display current weather
+      var dateEl = $("<h3>");
+      var cityNameEl = $("<h3>");
+      var conditionEl = $("<h6>");
+      var iconEl = $("<img>");
+      var cityTempEl = $("<h6>");
 
       // Add content to elements
+      dateEl.text(date);
       cityNameEl.text(location);
       cityTempEl.text(`${temp}°F`);
       conditionEl.text(condition);
@@ -57,6 +66,7 @@ function getWeatherData() {
       );
 
       // Append elements to the weather info field
+      weatherEl.append(dateEl);
       weatherEl.append(iconEl);
       weatherEl.append(cityNameEl);
       weatherEl.append(conditionEl);
