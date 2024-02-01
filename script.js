@@ -40,7 +40,8 @@ function getWeatherData() {
         // Only create button if weatherData is available
         createButton(userSelectedCity);
       }
-
+      
+      // var date = weatherData.
       var temp = weatherData.main.temp;
       var condition = weatherData.weather[0].description;
       var location = weatherData.name;
@@ -82,17 +83,19 @@ function getForecastData() {
         createButton(userSelectedCity);
       }
 
-      for (var i = 0; i < 40; i++) {
+      for (var i = 0; i < forecastData.list.length; i++) {
         // Variables to collect API data
-        var forecastDate = forecastData.list[i].dt_txt.split(" ")[0];
+        var forecastDate = dayjs(forecastData.list[i].dt_txt).format(
+          "dddd, MMM D"
+        );
         var forecastIcon = forecastData.list[i].weather[0].icon;
         var forecastTemp = forecastData.list[i].main.feels_like;
         var forecastWind = forecastData.list[i].wind.speed;
         var forecastHumidity = forecastData.list[i].main.humidity;
         var forecastCity = forecastData.city.name;
-        var timeStamp = forecastData.list[i].dt_txt.split(" ")[1];
+        var timeStamp = dayjs(forecastData.list[i].dt_txt).format("H");
 
-        // Varibles to create card elements
+        // Variables to create card elements and add text content to them
         var forecastCardEl = $("<div>").addClass(
           "card text-bg-primary my-3 p-3 custom-height"
         );
@@ -106,13 +109,13 @@ function getForecastData() {
         var hrEl = $("<hr>");
         var forecastCityEl = $("<p>").text(forecastCity);
         var forecastTempEl = $("<p>").text(`Temp: ${forecastTemp}°F`);
-        var forecastWindEl = $("<p>").text(`Wind: ${forecastWind}MPH`);
+        var forecastWindEl = $("<p>").text(`Wind: ${forecastWind} MPH`);
         var forecastHumidityEl = $("<p>").text(
           `Humidity: ${forecastHumidity}%`
         );
 
         // Append elements with data to the forecastCardEl if times match
-        if (timeStamp == "00:00:00") {
+        if (timeStamp == "6") {
           forecastEl.append(forecastCardEl);
           forecastCardEl.append(forecastDateEl);
           forecastCardEl.append(forecastIconEl);
@@ -155,7 +158,9 @@ function createButton() {
 function handleFormSubmit(event) {
   event.preventDefault();
   forecastEl.empty();
-  userSelectedCity = capitalizeFirstLetter(searchForm.children("input").val().split(",")[0].trim());
+  userSelectedCity = capitalizeFirstLetter(
+    searchForm.children("input").val().split(",")[0].trim()
+  );
   weatherURL = `https://api.openweathermap.org/data/2.5/weather?units=imperial&q=${userSelectedCity}&appid=976a6e1bd50b752c93e255a6e65ac032`;
   forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${userSelectedCity}&units=imperial&appid=976a6e1bd50b752c93e255a6e65ac032`;
 
@@ -168,6 +173,7 @@ function handleFormSubmit(event) {
   });
 }
 
+// Capitalizes the first letter of a string
 function capitalizeFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
