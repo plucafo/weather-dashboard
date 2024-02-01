@@ -12,14 +12,7 @@ var buttonEl = $(".city-buttons");
 var weatherURL;
 var forecastURL;
 
-var cities = [
-  "Atlanta",
-  "Chicago",
-  "Dallas",
-  "Los Angeles",
-  "New York",
-  "Phoenix",
-];
+var cities = [];
 
 // Sets Chicago as default weather displayed on page load
 var userSelectedCity = "Chicago"; // Set this to any city to change default weather shown
@@ -77,8 +70,24 @@ fetch(forecastURL)
   });
 }
 
+// function createButton () {
+// if (buttonEl.children.length > 6) {
+//   buttonEl.lastChildElement.remove();
+// } else {
+// var cityBtn = $("<button>")
+//     .text('button')
+//     .addClass("btn bg-secondary-subtle text-dark mb-3 w-100");
+
+//     buttonEl.append(cityBtn);
+// }
+// }
+
+// Create button elements using names from cities array
+function createButton () {
+  buttonEl.empty();
+  cities = cities.slice(0, 6);
+
 for (var i = 0; i < cities.length; i++) {
-  // Create button elements using names from cities array
   var cityBtn = $("<button>")
     .text(cities[i])
     .addClass("btn bg-secondary-subtle text-dark mb-3 w-100");
@@ -95,6 +104,7 @@ for (var i = 0; i < cities.length; i++) {
   });
 
   buttonEl.append(cityBtn);
+}
 }
 
 // **************************************************************************
@@ -145,9 +155,12 @@ function handleFormSubmit(event) {
   userSelectedCity = searchForm.children("input").val().split(',')[0].trim();
   weatherURL = `https://api.openweathermap.org/data/2.5/weather?units=imperial&q=${userSelectedCity}&appid=976a6e1bd50b752c93e255a6e65ac032`;
   forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${userSelectedCity}&units=imperial&appid=976a6e1bd50b752c93e255a6e65ac032`;
+  
+  cities.unshift(userSelectedCity);
 
   getWeatherData();
   getForecastData();
+  createButton();
 }
 
 // Event listener on form submit
