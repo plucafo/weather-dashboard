@@ -99,7 +99,7 @@ function getForecastData() {
           "dddd, MMM D"
         );
         var forecastIcon = forecastData.list[i].weather[0].icon;
-        var forecastTemp = forecastData.list[i].main.feels_like;
+        var forecastTemp = forecastData.list[i].main.temp;
         var forecastWind = forecastData.list[i].wind.speed;
         var forecastHumidity = forecastData.list[i].main.humidity;
         var forecastCity = forecastData.city.name;
@@ -125,7 +125,7 @@ function getForecastData() {
         );
 
         // Append elements with data to the forecastCardEl if times match
-        if (timeStamp == "6") {
+        if (timeStamp == "21") {
           forecastEl.append(forecastCardEl);
           forecastCardEl.append(forecastDateEl);
           forecastCardEl.append(forecastIconEl);
