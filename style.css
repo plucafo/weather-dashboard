@@ -4,6 +4,7 @@
   }
 }
 
+/* Media queries */
 @media only screen and (max-width: 521px) {
   .five-day-forecast .card {
     width: 100%;
@@ -13,25 +14,20 @@
   }
 }
 
+/* Global styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.custom-height {
-  height: 300px;
-}
-
+/* Styles for autocomplete dropdown */
 .ui-autocomplete {
   max-height: 100px;
   overflow-y: auto;
-  /* prevent horizontal scrollbar */
   overflow-x: hidden;
 }
-/* IE 6 doesn't support max-height
- * we use height instead, but this forces the menu to always be this tall
- */
+
 * html .ui-autocomplete {
   height: 100px;
 }

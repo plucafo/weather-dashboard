@@ -1,7 +1,6 @@
 // Element variables
 var weatherEl = $(".weather-info");
 var forecastEl = $(".five-day-forecast");
-
 var searchForm = $(".search-form");
 var buttonEl = $(".city-buttons");
 
@@ -9,7 +8,8 @@ var buttonEl = $(".city-buttons");
 var weatherURL;
 var forecastURL;
 
-var cities = []; // Create empty array to add user submitted city names to
+// Create empty array to add user submitted city names to
+var cities = [];
 
 // Sets Chicago as default weather displayed on page load
 var userSelectedCity = "Chicago"; // Set this to any city to change default weather shown
@@ -162,6 +162,7 @@ function createButton() {
 
     buttonEl.append(cityBtn);
   }
+  saveCityButtons();
 }
 
 // Handles form submission
@@ -187,6 +188,22 @@ function handleFormSubmit(event) {
 function capitalizeFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+// Saves cities array to local storage
+function saveCityButtons() {
+  localStorage.setItem("cities", JSON.stringify(cities));
+}
+
+// Loads cities array from local storage
+function loadCityButtons() {
+  var storedCities = localStorage.getItem("cities");
+  if (storedCities) {
+    cities = JSON.parse(storedCities);
+  }
+}
+
+// Load cities from local storage when the page loads
+loadCityButtons();
 
 // Event listener on form submit
 searchForm.on("submit", handleFormSubmit);
