@@ -1,5 +1,11 @@
 # Weather Dashboard
 
+- [Github Repo](https://github.com/plucafo/weather-dashboard)
+
+- [Live Demo](https://plucafo.github.io/weather-dashboard/)
+
+<br>
+
 [![Weather Dashboard Landing Page](./assets/weather-dashboard.png)](./assets/weather-dashboard.png)
 
 ## Table of Contents
